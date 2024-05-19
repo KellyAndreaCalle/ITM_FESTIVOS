@@ -30,8 +30,13 @@ public class FestivoServicio implements IFestivoServicio {
         int mes = festivo.getMes();
         int diasPascua = festivo.getDiasPascua();
         LocalDate fechaFestivo = calcularFechaFestivo(fecha.getYear(), mes, dia, diasPascua, festivo.getTipo().getId());
-        return fechaFestivo.equals(fecha);
+        
+        
+        return fechaFestivo.getYear() == fecha.getYear() &&
+               fechaFestivo.getMonthValue() == fecha.getMonthValue() &&
+               fechaFestivo.getDayOfMonth() == fecha.getDayOfMonth();
     }
+    
 
     private LocalDate calcularFechaFestivo(int año, int mes, int dia, int diasPascua, int tipoFestivo) {
         if (tipoFestivo == 1) { // Fijo
