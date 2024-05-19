@@ -48,9 +48,27 @@ public class FestivoServicio implements IFestivoServicio {
             }
             return fechaFestivo;
         } else { // Basado en Pascua
-            // Implementar cálculo de fecha basado en Pascua aquí
-            // De momento, retornamos la fecha de forma estática
-            return LocalDate.of(2022, 1, 1);
+            int a = año % 19;
+            int b = año % 4;
+            int c = año % 7;
+            int d = (19 * a + 24) % 30;
+            int e = (2 * b + 4 * c + 6 * d + 5) % 7;
+            int diaPascua = 22 + d + e;
+            
+            // Manejo de casos especiales
+            if ((d == 29 && e == 6) || (d == 28 && e == 6 && (11 * (a + 1)) % 30 < 19)) {
+                diaPascua -= 7;
+            }
+            
+            LocalDate fechaPascua = LocalDate.of(año, 3, 1).plusDays(diaPascua);
+            
+            // Si la fecha de Pascua cae en marzo, se ajusta al domingo siguiente (Pascua se celebra en abril)
+            if (fechaPascua.getMonthValue() == 3) {
+                fechaPascua = fechaPascua.withDayOfMonth(31);
+            }
+            
+            return fechaPascua;
         }
     }
 }
+
