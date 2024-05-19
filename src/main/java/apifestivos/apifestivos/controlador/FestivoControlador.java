@@ -17,7 +17,7 @@ public class FestivoControlador {
     @Autowired
     private IFestivoServicio festivoServicio;
 
-    @GetMapping("/validar-festivo")
+    @GetMapping("api/festivos")
     public ResponseEntity<?> validarFestivo(@RequestParam int año, @RequestParam int mes, @RequestParam int dia) {
         try {
             LocalDate fecha = LocalDate.of(año, mes, dia);
