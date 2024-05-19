@@ -33,7 +33,7 @@ public class Festivo {
     private int diasPascua;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo", nullable = false)
+    @JoinColumn(name = "idtipo", nullable = false)
     private Tipo tipo;
 
     public Festivo() {
