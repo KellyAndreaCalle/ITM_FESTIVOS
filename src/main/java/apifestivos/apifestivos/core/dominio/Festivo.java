@@ -29,7 +29,7 @@ public class Festivo {
     @Column(name = "mes")
     private int mes;
 
-    @Column(name = "dias_pascua")
+    @Column(name = "diaspascua")
     private int diasPascua;
 
     @ManyToOne
